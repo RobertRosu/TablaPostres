@@ -1,6 +1,6 @@
 :host {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   width: 100%;
 }
@@ -26,4 +26,17 @@
 }
 :host table tbody tr td img {
   width: 40px;
+}
+:host button {
+  margin: 50px 0 0 10px;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+:host button:hover {
+  background-color: darkblue;
 }/*# sourceMappingURL=app.component.css.map */

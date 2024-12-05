@@ -5,7 +5,7 @@
         "stock": 35,
         "precio": 5.00,
         "url": "torta-de-chocolate",
-        "img": "img1.jpg",
+        "img": "../assets/img/img1.jpg",
         "fecha": "2019-06-17 15:56:33"
     },
     {
@@ -14,7 +14,7 @@
         "stock": 20,
         "precio": 3.50,
         "url": "pie-de-manzana",
-        "img": "img2.jpg",
+        "img": "../assets/img/img2.jpg",
         "fecha": "2019-06-18 15:56:33"
     },
     {
@@ -23,7 +23,7 @@
         "stock": 50,
         "precio": 3.25,
         "url": "arroz-con-leche",
-        "img": "img3.jpg",
+        "img": "../assets/img/img3.jpg",
         "fecha": "2019-06-19 15:56:33"
     },
     {
@@ -32,7 +32,7 @@
         "stock": 105,
         "precio": 1.50,
         "url": "gelatina-de-fresa",
-        "img": "img4.jpg",
+        "img": "../assets/img/img4.jpg",
         "fecha": "2019-06-20 15:56:33"
     },
     {
@@ -41,7 +41,7 @@
         "stock": 10,
         "precio": 5.00,
         "url": "suspiro-a-la-limeña",
-        "img": "img5.jpg",
+        "img": "../assets/img/img5.jpg",
         "fecha": "2019-06-21 15:56:33"
     },
     {
@@ -50,7 +50,7 @@
         "stock": 8,
         "precio": 15.00,
         "url": "mazamorra-morada",
-        "img": "img6.jpg",
+        "img": "../assets/img/img6.jpg",
         "fecha": "2019-06-21 15:56:33"
     }
 ]
