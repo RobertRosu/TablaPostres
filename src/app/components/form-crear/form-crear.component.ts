@@ -31,6 +31,13 @@ export class FormCrearComponent {
   postre!: any
 
   agregarPostre(nombre: string, stock: number, precio: number, imagen: File | null | undefined){
-    this.postre = {nombre}
+    this.postre = {
+      "id": 0,
+      "nombre": nombre,
+      "stock": stock,
+      "precio": precio,
+      "url": nombre.replace(" ", "-"),
+      "img": imagen
+    }
   }
 }

@@ -26,7 +26,7 @@ import { FormCrearComponent } from './components/form-crear/form-crear.component
           <td>{{p.precio}}€</td>
           <td>{{p.url}}</td>
           <td><img src={{p.img}} alt="{{p.nombre}}"></td>
-          <td>{{p.fecha}}</td>
+          <td>{{p.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
         </tr>
       </tbody>
     </table>
