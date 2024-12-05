@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+:host table {
+  width: 100%;
+  border-collapse: collapse;
+}
+:host table thead {
+  border: 1px solid lightgray;
+}
+:host table thead tr th {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+:host table tbody tr {
+  border-bottom: 1px solid lightgray;
+}
+:host table tbody tr td {
+  text-align: center;
+  padding: 10px;
+}
+:host table tbody tr td img {
+  width: 40px;
+}/*# sourceMappingURL=app.component.css.map */

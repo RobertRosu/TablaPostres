@@ -1,0 +1,39 @@
+$gray-border: 1px solid lightgray;
+$thead-bg: #333;
+
+:host{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        thead{
+            border: $gray-border;
+            tr{
+                th{
+                    padding: 10px;
+                    background-color: $thead-bg;
+                    color:white;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        tbody{
+            tr{
+                border-bottom: $gray-border;
+                td{
+                    text-align: center;
+                    padding: 10px;
+
+                    img{
+                        width:40px;
+                    }
+                }
+            }
+        }
+    }
+}
