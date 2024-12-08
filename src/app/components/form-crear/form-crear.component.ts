@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { last } from 'rxjs';
 
 @Component({
   selector: 'app-form-crear',
@@ -19,25 +20,54 @@ import { Component, EventEmitter, Output } from '@angular/core';
       </div>
       <div>
         <label for="imagen">Imagen</label>
-        <input type="file" accept="image/*" id="imagen" #imagen>
+        <input type="file" accept="image/*" id="imagen" #imagen (change)="previewAndConvertImage(imagen)">
+        <div id="imagen-preview" [style]="{'background-image': preview}"></div>
       </div>
-      <button (click)="$event.preventDefault();agregarPostre(nombre.value, stock.valueAsNumber, precio.valueAsNumber, imagen.files?.item(0))">Confirmar</button>
+      <div class="opciones">
+        <button class="confirmar" (click)="$event.preventDefault();agregarNuevoPostre(nombre.value, stock.valueAsNumber, precio.valueAsNumber, this.newSelectedImage)">Confirmar</button>
+        <button class="cancelar" (click)="$event.preventDefault();emitCancelarAgregarPostre()">Cancelar</button>
+      </div>
     </form>
   `,
   styleUrls: ['./form-crear.component.scss']
 })
 export class FormCrearComponent {
-  @Output() agregarPostreEmitter = new EventEmitter()
+  @Output() agregarPostre = new EventEmitter()
+  @Output() cancelarAgregarPostre = new EventEmitter<boolean>()
   postre!: any
+  preview?: string
+  newSelectedImage?: string | ArrayBuffer
 
-  agregarPostre(nombre: string, stock: number, precio: number, imagen: File | null | undefined){
+  agregarNuevoPostre(nombre: string, stock: number, precio: number, imagen?: string | ArrayBuffer){
     this.postre = {
       "id": 0,
       "nombre": nombre,
       "stock": stock,
       "precio": precio,
-      "url": nombre.replace(" ", "-"),
-      "img": imagen
+      "url": nombre.replaceAll(" ", "-"),
+      "img": imagen,
+      "fecha": new Date()
+    }
+    console.log(imagen)
+    this.agregarPostre.emit(this.postre)
+  }
+
+  emitCancelarAgregarPostre(){
+    this.cancelarAgregarPostre.emit(false)
+  }
+
+  previewAndConvertImage(input: HTMLInputElement){
+    if(input.files && input.files.length > 0){
+      const lastFile = input.files[input.files.length - 1]
+      const reader = new FileReader()
+
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if(e.target && e.target.result){
+          this.preview = `url(${e.target.result})`
+          this.newSelectedImage = e.target.result
+        }
+      }
+      reader.readAsDataURL(lastFile)
     }
   }
 }

@@ -34,7 +34,9 @@ import { FormCrearComponent } from './components/form-crear/form-crear.component
     </ng-container>
 
     <ng-template #formCrear>
-      <app-form-crear />
+      <app-form-crear 
+      (cancelarAgregarPostre)="cancelarAgregarNuevoPostre($event)"
+      (agregarPostre)="agregarNuevoPostre($event)"/>
     </ng-template>
   `,
   styleUrls: ['./app.component.scss']
@@ -53,5 +55,15 @@ export class AppComponent implements OnInit{
 
   trackById(index: number, item: any){
     return item.id
+  }
+
+  cancelarAgregarNuevoPostre(e: boolean){
+    this.isAgregarNuevoPostreClicked = e
+  }
+
+  agregarNuevoPostre(e: any){
+    e.id = this.postres.length+1
+    this.postres.push(e)
+    this.isAgregarNuevoPostreClicked = false
   }
 }
