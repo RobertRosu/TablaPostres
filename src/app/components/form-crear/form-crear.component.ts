@@ -61,6 +61,8 @@ export class FormCrearComponent {
       const lastFile = input.files[input.files.length - 1]
       const reader = new FileReader()
 
+      // Cuando se carque un archivo, se visualizara en un div y se asignara su valor (cadena Base64) 
+      // a la variable [newSelectedImage] para luego ser usado a la hora de la inserccion
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if(e.target && e.target.result){
           this.preview = `url(${e.target.result})`
