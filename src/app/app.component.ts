@@ -25,8 +25,8 @@ import { FormCrearComponent } from './components/form-crear/form-crear.component
           <td>{{p.stock}}</td>
           <td>{{p.precio}}€</td>
           <td>{{p.url}}</td>
-          <td><img src={{p.img}} alt="{{p.nombre}}"></td>
-          <td>{{p.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+          <td><img src={{p.img}} alt={{p.nombre}}></td>
+          <td>{{p.fecha | date:'yyyy-MM-dd HH:mm:ss'}}</td>
         </tr>
       </tbody>
     </table>
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit{
   }
 
   agregarNuevoPostre(e: any){
-    e.id = this.postres.length+1
+    e.id = this.postres[this.postres.length - 1].id + 1
     this.postres.push(e)
     this.isAgregarNuevoPostreClicked = false
   }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { last } from 'rxjs';
+import {MaterialIcon} from 'material-icons'
 
 @Component({
   selector: 'app-form-crear',
@@ -21,7 +21,9 @@ import { last } from 'rxjs';
       <div>
         <label for="imagen">Imagen</label>
         <input type="file" accept="image/*" id="imagen" #imagen (change)="previewAndConvertImage(imagen)">
-        <div id="imagen-preview" [style]="{'background-image': preview}"></div>
+        <div id="preview-container" [class]="imagen.files!.length > 0 ? '' : 'fileUploaded'" appDropzone (fileEmitter)="insertFile(imagen, $event)">
+          <img [src]=newSelectedImage>
+        </div>
       </div>
       <div class="opciones">
         <button class="confirmar" (click)="$event.preventDefault();agregarNuevoPostre(nombre.value, stock.valueAsNumber, precio.valueAsNumber, this.newSelectedImage)">Confirmar</button>
@@ -35,7 +37,7 @@ export class FormCrearComponent {
   @Output() agregarPostre = new EventEmitter()
   @Output() cancelarAgregarPostre = new EventEmitter<boolean>()
   postre!: any
-  preview?: string
+  preview?: string | ArrayBuffer
   newSelectedImage?: string | ArrayBuffer
 
   agregarNuevoPostre(nombre: string, stock: number, precio: number, imagen?: string | ArrayBuffer){
@@ -65,11 +67,20 @@ export class FormCrearComponent {
       // a la variable [newSelectedImage] para luego ser usado a la hora de la inserccion
       reader.onload = (e: ProgressEvent<FileReader>) => {
         if(e.target && e.target.result){
-          this.preview = `url(${e.target.result})`
           this.newSelectedImage = e.target.result
         }
       }
       reader.readAsDataURL(lastFile)
     }
+  }
+
+  insertFile(input: HTMLInputElement, file: File){
+    const dataTransfer = new DataTransfer()
+    dataTransfer.items.add(file)
+    input.files = dataTransfer.files
+
+    // Ejecutamos un evento 'change' manualmente
+    input.dispatchEvent(new Event('change'))
+    console.log(input.files)
   }
 }

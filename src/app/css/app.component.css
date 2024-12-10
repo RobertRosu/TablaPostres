@@ -25,7 +25,11 @@
   padding: 10px;
 }
 :host table tbody tr td img {
-  width: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 :host button {
   margin: 50px 0 0 10px;
